@@ -9,7 +9,8 @@ for (let card of cards) {
   const cardId = card.dataset.id
 
   const deleteButton = card.querySelector('button.delete')
-  deleteButton.onclick = () => {
+  deleteButton.onclick = event => {
+    event.preventDefault()
     modal.open()
     deleteForm.setAttribute('action', '/job/delete/' + cardId)
   }
