@@ -1,7 +1,10 @@
 {
   "name": "maratona_2",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon ."
+  },
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1"
