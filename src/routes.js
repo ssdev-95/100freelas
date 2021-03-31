@@ -20,7 +20,26 @@ const Profile = {
         },
 
         update(req, res) {
-            
+            const weeksPerYear = 52
+
+            const weeksPerMonth = (weeksPerYear-req.body["vacation-per-year"])/12
+
+            const weeklyHours = req.body["hours-per-day"] * req.body["days-per-week"]
+
+            const monthlyHours = weeksPerMonth * weeklyHours
+
+            const valueHour = req.body["monthly-budget"] / monthlyHours
+
+            Profile.data = {
+                ...Profile.data,
+                monthlyBudget: req.body["monthly-budget"],
+                daysPerWeek: req.body["days-per-week"],
+                hoursPerDay: req.body["hours-per-day"],
+                vacationPerYear: req.body["vacation-per-year"],
+                valuePerHour: valueHour
+            }
+
+            return res.redirect('/profile')
         }
     }
 }
@@ -32,14 +51,16 @@ const Freelancer = {
             name: 'Gula-Guloso',
             dailyHours: 2,
             totalHours: 2,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            budget: 4500
         },
         {
             id: 2,
             name: 'OneTwo Project',
             dailyHours: 3,
             totalHours: 47,
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            budget: 4500
         }
     ],
 
@@ -53,14 +74,14 @@ const Freelancer = {
                     ...job,
                     remaining,
                     status,
-                    budget: Profile.data.valuePerHour * job.totalHours
+                    budget: Freelancer.services.calculateBudget(job,Profile.data.valuePerHour)
                 }
             })
         
             return res.render(views + 'index', {jobs: updatedJobs})
         },
         save(req, res) {
-            const lastId = Freelancer.data[Freelancer.data.length-1]?.id || 1
+            const lastId = Freelancer.data[Freelancer.data.length-1]?.id || 0
 
             Freelancer.data.push({
                 id: lastId+1,
@@ -73,6 +94,56 @@ const Freelancer = {
         },
         create(_req, res) {
             return res.render(views + 'job')
+        },
+
+        show(req, res) {
+            const jobId = req.params.id
+
+            const jobb = Freelancer.data.find(job=>Number(job.id)===Number(jobId))
+
+            if(!jobb) {
+                return res.send('Job not found')
+            }
+
+            jobb.budget = Freelancer.services.calculateBudget(jobb,Profile.data.valuePerHour)
+
+            return res.render(views + 'job-edit', { job: jobb })
+        },
+
+        update(req, res) {
+            const jobId = req.params.id
+
+            const jobb = Freelancer.data.find(job=>Number(job.id)===Number(jobId))
+
+            if(!jobb) {
+                return res.send('Job not found')
+            }
+
+            const updatedJob = {
+                ...jobb,
+                name: req.body.name,
+                totalHours: req.body['total-hours'],
+                dailyHours: req.body['daily-hours']
+            }
+
+            Freelancer.data = Freelancer.data.map(job=>{
+                if(Number(job.id)=== Number(jobId)) {
+                    job=updatedJob
+                }
+
+                return job
+            })
+
+            return res.redirect('/job/'+jobId)
+        },
+
+        delete(req, res) {
+            const jobId = req.params.id
+
+            //filter
+            Freelancer.data = Freelancer.data.filter(job=>Number(job.id)!==Number(jobId))
+
+            return res.redirect('/')
         }
     },
 
@@ -93,18 +164,20 @@ const Freelancer = {
             const dayDiff = Math.floor(timeDiffMs/dayInMs)
         
             return dayDiff
+        },
+
+        calculateBudget(job, valueHour) {
+            return valueHour * job.totalHours
         }
     }
 }
 
 routes.get('/', Freelancer.controllers.index)
-
 routes.get('/job', Freelancer.controllers.create)
-
 routes.post('/job', Freelancer.controllers.save)
-
-routes.get('/job/edit', (_req, res)=>res.render(views + 'job-edit'))
-
+routes.get('/job/:id', Freelancer.controllers.show)
+routes.post('/job/:id', Freelancer.controllers.update)
+routes.post('/job/delete/:id', Freelancer.controllers.delete)
 routes.get('/profile', Profile.controllers.index)
 routes.post('/profile', Profile.controllers.update)
 
