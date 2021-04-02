@@ -23,11 +23,12 @@ module.exports = {
     },
     update: freela => {
         data = data.map(lance=>{
-            lance.id===freela.id&&(lance=freela)
+            if(lance.id===freela.id) {
+                lance=freela
+            }
         })
     },
     delete: id => {
-        const newData = data.filter(freela=>freela.id===id)
-        data = newData
+        data = data.filter(job=>Number(job.id)!==Number(id))
     }
 }

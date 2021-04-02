@@ -40,13 +40,20 @@ module.exports = {
         const jobId = req.params.id
         const freelas = Freelas.get()
         const profile = Profile.get()
-        const jobb = freelas.find(job=>Number(job.id)===Number(jobId))
+
+        const jobb = freelas.find(job=>{
+            if(Number(job.id)===Number(jobId)) {
+                return job
+            }
+        })
+
+        console.log(jobb)
 
         if(!jobb) {
             return res.send('Job not found')
         }
 
-        jobb.budget = Utils.calculateBudget(jobb,profile.valuePerHour)
+        jobb.budget = Utils.calculateBudget(jobb, profile.valuePerHour)
 
         return res.render('job-edit', { job: jobb })
     },
