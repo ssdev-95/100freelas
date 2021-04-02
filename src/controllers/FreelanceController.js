@@ -3,23 +3,6 @@ const Profile = require('../models/Profile')
 const FreelaUtils = require('../utils/FreelaUtils')
 
 module.exports = {
-    index: (_req, res) => {
-        const jobs = Freelas.get()
-        const profile = Profile.get()
-        const updatedJobs = jobs.map(job => {
-            const remaining = FreelaUtils.getRemainingDays(job)
-            const status = remaining <= 0 ? 'done' : 'progress'
-    
-            return {
-                ...job,
-                remaining,
-                status,
-                budget: FreelaUtils.calculateBudget(job,profile.valuePerHour)
-            }
-        })
-    
-        return res.render('index', {jobs: updatedJobs})
-    },
     save: (req, res) => {
         const jobs = Freelas.get()
         const lastId = jobs[jobs.length-1]?.id || 0

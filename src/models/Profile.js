@@ -1,6 +1,6 @@
 let data = {
-    name: 'Salomao',
-    avatar: 'https://avatars.githubusercontent.com/u/58428963?v=4',
+    name: 'Salomao (xSallus)',
+    avatar: 'https://github.com/xSallus.png',
     monthlyBudget: 2650.99,
     daysPerWeek: 5,
     hoursPerDay: 6,
