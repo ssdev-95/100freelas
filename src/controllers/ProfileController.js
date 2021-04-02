@@ -1,11 +1,11 @@
 const Profile = require('../models/Profile')
 
 module.exports = {
-    index(_req, res){
+    index: (_req, res) => {
         return res.render('profile', { profile: Profile.data })
     },
 
-    update(req, res) {
+    update: (req, res) => {
         const weeksPerYear = 52
 
         const weeksPerMonth = (weeksPerYear-req.body["vacation-per-year"])/12

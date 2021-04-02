@@ -14,21 +14,25 @@ let data = [
         totalHours: 47,
         createdAt: Date.now(),
         budget: 4500
-    }
+    },
+    {
+        id: 3,
+        name: 'Freedelicias',
+        dailyHours: 6,
+        totalHours: 90,
+        createdAt: Date.now(),
+        budget: 4500
+    },
 ]
 
 module.exports = {
     get: () => {
         return data
     },
-    update: freela => {
-        data = data.map(lance=>{
-            if(lance.id===freela.id) {
-                lance=freela
-            }
-        })
+    update: (newJob) => {
+        data = newJob
     },
-    delete: id => {
+    delete: (id) => {
         data = data.filter(job=>Number(job.id)!==Number(id))
     }
 }

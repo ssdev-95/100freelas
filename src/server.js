@@ -13,4 +13,4 @@ server.use(express.urlencoded({extended:true}))
 
 server.use(routes)
 
-server.listen(3000, ()=>console.log('server is running..'))
+server.listen(3000, ()=>console.log('Server is running..'))

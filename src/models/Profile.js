@@ -9,10 +9,10 @@ let data = {
 }
 
 module.exports = {
-    get: ()=>{
+    get: () => {
         return data
     },
-    update(profile) {
+    update: (profile) => {
         data = profile
     }
 }
