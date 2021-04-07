@@ -17,7 +17,7 @@ module.exports = {
         return dayDiff
     },
 
-    calculateBudget: (job, valueHour) => {
-        return valueHour * job.totalHours
+    calculateBudget: (totalHours, valueHour) => {
+        return valueHour * totalHours
     }
 }

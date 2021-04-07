@@ -3,8 +3,8 @@ const Freelas = require("../models/Freelas");
 const FreelaUtils = require('../utils/FreelaUtils')
 
 module.exports = {
-  index: async (_req, res) => {
-    const jobs = Freelas.get();
+  async index (_req, res) {
+    const jobs = await Freelas.get();
 
     const profile = await Profile.get();
 
@@ -29,7 +29,7 @@ module.exports = {
         ...job,
         remaining,
         status,
-        budget: FreelaUtils.calculateBudget(job, profile.valuePerHour),
+        budget: FreelaUtils.calculateBudget(job.totalHours, profile.valuePerHour),
       };
     });
 
