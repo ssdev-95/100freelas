@@ -3,10 +3,10 @@ const Freelas = require("../models/Freelas");
 const FreelaUtils = require('../utils/FreelaUtils')
 
 module.exports = {
-  index: (_req, res) => {
+  index: async (_req, res) => {
     const jobs = Freelas.get();
 
-    const profile = Profile.get();
+    const profile = await Profile.get();
 
     const statusCount = {
       progress: 0,
@@ -14,7 +14,7 @@ module.exports = {
       total: jobs.length
     }
       
-    let freeHours = Profile.get().hoursPerDay
+    let freeHours = await Profile.get().hoursPerDay
 
     const updatedJobs = jobs.map((job) => {
       const remaining = FreelaUtils.getRemainingDays(job);

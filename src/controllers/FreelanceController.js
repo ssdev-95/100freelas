@@ -3,7 +3,7 @@ const Profile = require('../models/Profile')
 const FreelaUtils = require('../utils/FreelaUtils')
 
 module.exports = {
-    save: (req, res) => {
+    save(req, res) {
         const jobs = Freelas.get()
         const lastId = jobs[jobs.length-1]?.id || 0
 
@@ -16,10 +16,10 @@ module.exports = {
         })
         return res.redirect('/')
     },
-    create: (_req, res) => {
+    create(_req, res){ 
         return res.render('job')
     },
-    show: (req, res) => {
+    async show(req, res) {
         const jobId = req.params.id
         const jobs = Freelas.get()
 
@@ -29,13 +29,13 @@ module.exports = {
             return res.send('Job not found')
         }
 
-        const profile = Profile.get()
+        const profile = await  Profile.get()
 
         job.budget = FreelaUtils.calculateBudget(job, profile.valuePerHour)
 
         return res.render('job-edit', { job })
     },
-    update: (req, res) => {
+    update(req, res) {
         const jobId = req.params.id
 
         const jobs = Freelas.get()
@@ -65,7 +65,7 @@ module.exports = {
 
         return res.redirect('/job/'+updatedJob.id)
     },
-    delete: (req, res) => {
+    delete(req, res) {
         const jobId = req.params.id
          
         Freelas.delete(jobId)
