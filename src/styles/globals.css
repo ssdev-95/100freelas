@@ -1,3 +1,34 @@
+:root {
+    --background: #f0f2f5;
+    --text: #fcfdff;
+
+    --primary: #41414c;
+    --secundary: #f1972c;
+    --secundary-hover: #fa9c2d;
+
+
+    --input-background: #f8f8fc;
+    --button-text: #fff;
+    --hairline-in-dark:#4f4f5b;
+    --hairline-in-light: #e1e3e5;
+
+    --card-background: var(--text);
+    --card-title: #5a5a66;
+    --card-label: #bfbfcc;
+    --card-content: #787880;
+    
+    --cancel: var(--hairline-in-light);
+    --delete: #eb3b35;
+    --save: #36b336;
+    
+    --badge-progress-text: var(--save);
+    --badge-progress-background: #E8F8E8;
+    --badge-done-text: var(--delete);
+    --badge-done-background: #FAECEB;
+
+    --header-inner-title: var(--card-label);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,4 +37,5 @@
 
 html, body {
     background: #f0f2f5;
+    font-family: 'Inter', monospace;
 }
