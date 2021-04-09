@@ -28,6 +28,7 @@
     width: 80vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .freehours {
@@ -69,7 +70,29 @@
     font-weight: 400;
 }
 
+.profileContainer a:hover {
+    color: var(--button-text);
+}
+
 .profileContainer img {
     border-radius: 50px;
     height: 45px;
+}
+
+.statsContainer {
+    display: flex;
+    gap: 2rem;
+    margin-top: -3rem;
+}
+
+.stats {
+    display: block;
+    color: var(--text);
+    font-size: 1.35rem;
+}
+
+.stats h3:last-child {
+    font-weight: 300;
+    font-size: 1rem;
+    opacity: .68;
 }
