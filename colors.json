@@ -1,0 +1,33 @@
+{
+  "light": {
+    "background": "#F0F2F5",
+    "text": "#FCFDFF",
+
+    "primary": "#41414C",
+    "secondary": "#F1972C",
+    "secondary-hover": "#FA9C2D",
+    
+    "input-background": "#F8F8FC",
+    "button-text": "#FFFFFF",
+    "hairline-in-dark": "#4F4F5B",
+    "hairline-in-light": "#E1E3E5",
+
+    "card-background": "text",
+    "card-title": "#5A5A66",
+    "card-label":" #BFBFCC",
+    "card-content": "#787880",
+
+    "cancel": "#E1E3E5",
+    "delete": "#EB3B35",
+    "save": "#36B336",
+    
+    "badge-progress-text": "save",
+    "badge-progress-background": "#E8F8E8",
+    "badge-done-text": "delete",
+    "badge-done-background": "#FAECEB",
+
+    "header-inner-title": "card-label"
+
+  },
+  "dark": {}
+}
