@@ -39,3 +39,11 @@ html, body {
     background: #f0f2f5;
     font-family: 'Inter', monospace;
 }
+
+.jobsContainer {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: -2.75rem auto;
+}

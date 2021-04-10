@@ -74,9 +74,19 @@
     color: var(--button-text);
 }
 
-.profileContainer img {
+.avatarContainer {
+    height: 64px;
+    width: 64px;
     border-radius: 50px;
-    height: 45px;
+    background: var(--secundary-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarContainer img {
+    border-radius: 50px;
+    height: 60px;
 }
 
 .statsContainer {
