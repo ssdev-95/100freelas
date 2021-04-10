@@ -27,6 +27,8 @@
     --badge-done-background: #FAECEB;
 
     --header-inner-title: var(--card-label);
+
+    --overlay: rgba(0,0,0,.48);
 }
 
 * {
@@ -37,7 +39,7 @@
 
 html, body {
     background: #f0f2f5;
-    font-family: 'Inter', monospace;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .jobsContainer {
@@ -59,5 +61,5 @@ html, body {
 }
 
 .filter:hover {
-    color: var(--button-text);
+    color: var(--secundary);
 }

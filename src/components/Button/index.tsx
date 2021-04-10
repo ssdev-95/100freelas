@@ -9,7 +9,7 @@ interface ButtonProps {
 export const Button = ({bg, src, title}: ButtonProps) => {
     return (
         <div style={{backgroundColor: bg}} className={styles.button}>
-            <img src={src} alt="Button icon"/>
+            <img src={src}/>
             <p>{title}</p>
         </div>
     )

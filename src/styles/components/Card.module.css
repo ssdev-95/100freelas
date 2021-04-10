@@ -60,3 +60,7 @@
   border-radius: 5px;
   border: 1.75px solid var(--hairline-in-light);
 }
+
+.actions img:hover {
+  background: var(--card-label);
+}

@@ -71,7 +71,7 @@
 }
 
 .profileContainer a:hover {
-    color: var(--button-text);
+    color: var(--secundary);
 }
 
 .avatarContainer {
