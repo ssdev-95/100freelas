@@ -1,25 +1,25 @@
 import React, {useState} from 'react'
 import Header from '../components/MainHeader'
 import Card from '../components/Card'
-import Create from '../components/Modals/Create'
-import Edit from '../components/Modals/Edit'
-import Delete from '../components/Modals/Delete'
+import AddJob from '../components/Modals/Create'
+import EditJob from '../components/Modals/Edit'
+import DeleteJob from '../components/Modals/Delete'
 
 export default function Home() {
-  const [addJobModalOpen, setAddJobModalOpen] = useState(true)
+  const [addJobModalOpen, setAddJobModalOpen] = useState(false)
   const [editJobModalOpen, setEditJobModalOpen] = useState(false)
   const [deleteJobModalOpen, setDeleteJobModalOpen] = useState(false)
 
   return (
     <div>
       {
-        addJobModalOpen && <Create />
+        addJobModalOpen && <AddJob />
       }
       {
-        editJobModalOpen && <Edit />
+        editJobModalOpen && <EditJob />
       }
       {
-        deleteJobModalOpen && <Delete />
+        deleteJobModalOpen && <DeleteJob />
       }
       <Header/>
       <div className="jobsContainer">

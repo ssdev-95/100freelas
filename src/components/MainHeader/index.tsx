@@ -1,12 +1,9 @@
 
 import React from 'react'
-import {Button} from '../Button'
 
-import colors from '../../styles/colors.json'
 import styles from '../../styles/components/HomeHead.module.css'
 
 export default function Header() {
-    const addBtnColor = colors.light.secondary
 
     return (
       <nav className={styles.navbar}>
@@ -42,7 +39,10 @@ export default function Header() {
              <h3>Done</h3>
            </div>
          </div>
-         <Button bg={addBtnColor} src="images/plus-orange.svg" title="Add new job" />
+         <div className="button">
+            <img src="images/plus-orange.svg"/>
+            <p>Add new job</p>
+         </div>
        </div>
       </nav>
     )

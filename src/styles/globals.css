@@ -61,5 +61,37 @@ html, body {
 }
 
 .filter:hover {
-    color: var(--secundary);
+    color: var(--secundary-hover);
 }
+
+.button {
+    padding: 0.75rem 3rem;
+    border-radius: 0.313rem;
+    border: 0;
+    
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  
+    transition: all .2s;
+  
+    cursor: pointer;
+  
+    display: inline-flex;
+    justify-content:center;
+    align-items: center;
+    gap: 1rem;
+    
+    line-height: 1.5rem;
+    background: var(--secundary);
+    color: var(--button-text);
+  
+    width: 15rem;
+    height: 3rem;
+  
+    padding: 0;
+  }
+
+  .button:hover {
+      background: var(--secundary-hover);
+  }

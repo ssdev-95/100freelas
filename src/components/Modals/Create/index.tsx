@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button} from '../../Button'
 
 import colors from '../../../styles/colors.json'
 import common from '../../../styles/components/Modal.module.css'
@@ -9,29 +8,31 @@ export default function AddJob() {
     return (
         <div className={common.overlay}>
             <div className={common.modal}>
+                <img className={modal.exit} src="images/open-door.svg" alt=""/>
                 <div className={modal.left}>
-                    <span>Dados do Job</span>
-                    <hr/>
-                    <div className={modal.container}>
+                    <span className={modal.title}>Dados do Job</span>
+                    <div className={modal.input}>
                         <span>Job Name</span>
                         <input name="job_name" type="text"/>
                     </div>
                     <div  className={modal.container}>
-                        <div>
-                            <span>How many hours will spend with this job?</span>
+                        <div className={modal.input}>
+                            <span>How many hours<br/>will spend with this job?</span>
                             <input name="daily_hours" type="text"/>
                         </div>
-                        <div>
-                            <span>Estimated hours for this Job</span>
+                        <div className={modal.input}>
+                            <span>Estimated<br/>hours for this Job</span>
                             <input name="total_hours" type="text"/>
                         </div>
                     </div>
                 </div>
                 <div className={modal.right}>
-                    <img src="" alt=""/>
-                    <span></span>
-                    <div>
-                        <Button bg={colors.light.save} src='' title='Salvar' />
+                    <img src="images/money-gray.svg" alt=""/>
+                    <span>Fill the form on the left to see Job's price</span>
+                    <div className={modal.actions}>
+                        <div style={{background: colors.light.save}} className={modal.button}>
+                            <span>Save</span>
+                        </div>
                         <img src="images/trash-24.svg" alt="Delete button"/>
                     </div>
                 </div>
