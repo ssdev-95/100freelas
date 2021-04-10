@@ -47,3 +47,17 @@ html, body {
     gap: 15px;
     margin: -2.75rem auto;
 }
+
+.filter {
+    width: fit-content;
+    height: fit-content;
+    text-decoration: none;
+    color: var(--card-label);
+    font-weight: 400;
+    font-size: .85rem;
+    margin-bottom: -0.5rem;
+}
+
+.filter:hover {
+    color: var(--button-text);
+}

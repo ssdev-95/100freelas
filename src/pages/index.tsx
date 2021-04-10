@@ -7,6 +7,7 @@ export default function Home() {
     <div>
       <Header/>
       <div className="jobsContainer">
+        <a className="filter" href="#">filter &gt;&gt;</a>
         <Card job={{id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2}} />
       </div>
     </div>
