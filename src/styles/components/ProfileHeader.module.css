@@ -1,0 +1,22 @@
+.pageHeader {
+  background: var(--primary);
+  width: 100vw;
+  padding: .75rem 1.5rem;
+  display: flex;
+}
+
+.container {
+  width: 53%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container h1 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--card-label);
+}
+
+.arrow {
+  cursor: pointer;
+}

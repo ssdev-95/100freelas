@@ -1,0 +1,89 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 3.5rem;
+    padding: 3rem 4.75rem 3.65rem;
+}
+
+.content div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.right {
+    width: 70%;
+}
+
+.left {
+    width: 30%;
+    border-radius: 10px;
+    background: var(--text);
+    box-shadow: 0 2px 11px var(--card-title);
+    gap: .15rem;
+}
+
+.avatar {
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+}
+
+.title,
+.avatarTitle,
+.pricing span {
+    color: var(--card-title);
+}
+
+.title {
+    align-self: flex-start;
+    padding-bottom: .25rem;
+    width: 100%;
+    border-bottom: 1px solid var(--card-label);
+}
+
+.avatarTitle {
+    font-weight: 500;
+}
+
+.pricing span {
+    font-size: 1.25rem;
+}
+
+.pricing span:last-child {
+    font-weight: 500;
+}
+
+.button {
+    padding: .15rem .75rem;
+    width: 12rem;
+    background: var(--save);
+    border-radius: 5px;
+}
+
+.topperInput {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.topperInput input {
+    width: 50%;
+    height: 8vh;
+    padding: .45rem;
+}
+
+.lowerInput {
+    display: gid;
+}

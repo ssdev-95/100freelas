@@ -19,7 +19,9 @@
     
     --cancel: var(--hairline-in-light);
     --delete: #eb3b35;
+    --delete-hover: #fa3f38;
     --save: #36b336;
+    --save-hover: #02cc02;
     
     --badge-progress-text: var(--save);
     --badge-progress-background: #E8F8E8;
@@ -90,8 +92,8 @@ html, body {
     height: 3rem;
   
     padding: 0;
-  }
+}
 
-  .button:hover {
-      background: var(--secundary-hover);
-  }
+.button:hover {
+    background: var(--secundary-hover);
+}

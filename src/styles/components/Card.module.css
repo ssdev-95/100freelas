@@ -11,6 +11,15 @@
   justify-content: space-between;
 }
 
+.cardContainer:hover {
+  border-left: 3px solid var(--secundary-hover);
+  background: linear-gradient(90deg, rgba(250,156,45,0.3) 0.45%, rgba(252,253,255,0.1) 31.4%), white;
+}
+
+.cardContainer:hover .id {
+  color: var(--secundary);
+}
+
 .jobDataContainer {
   display: flex;
   gap: 1rem;

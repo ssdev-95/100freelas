@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { EditContext } from '../../../contexts/EditContext'
 
 import colors from '../../../styles/colors.json'
 import common from '../../../styles/components/Modal.module.css'
 import modal from '../../../styles/components/Create.module.css'
 
 export default function EditJob() {
+    const {openEditModal} = useContext(EditContext)
+    
     return (
         <div className={common.overlay}>
             <div className={common.modal}>
-                <img className={modal.exit} src="images/open-door.svg" alt=""/>
+                <img
+                  onClick={openEditModal} 
+                  className={modal.exit} 
+                  src="images/open-door.svg" />
                 <div className={modal.left}>
                     <span className={modal.title}>Dados do Job</span>
                     <div className={modal.input}>
