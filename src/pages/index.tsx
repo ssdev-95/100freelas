@@ -1,4 +1,6 @@
-import React, {useContext} from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+
+import { FreelaController } from '../db/FreelanceController'
 
 import Header from '../components/MainHeader'
 import Card from '../components/Card'
@@ -11,30 +13,28 @@ import { EditContext } from '../contexts/EditContext'
 import { DeleteContext } from '../contexts/DeleteContext'
 
 export default function Home() {
-  const {createJobModalOpen} = useContext(CreateContext)
-  const {editJobModalOpen} = useContext(EditContext)
-  const {deleteJobModalOpen} = useContext(DeleteContext)
+	const { createJobModalOpen } = useContext(CreateContext)
+	const { editJobModalOpen } = useContext(EditContext)
+	const { deleteJobModalOpen } = useContext(DeleteContext)
 
-  const Jobs = [
-    {id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2},
-    {id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2},
-    {id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2},
-    {id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2},
-    {id: 1, name:'Freedelicias', price:'$ 3500,00', remainingDays: 2}
-  ]
+	const [jobs, setJobs] = useState([])
 
-  return (
-    <div>
-      { createJobModalOpen && <AddJob /> }
-      { editJobModalOpen && <EditJob /> }
-      { deleteJobModalOpen && <DeleteJob /> }
-      <Header/>
-      <div className="jobsContainer">
-        <a className="filter" href="#">filter &gt;&gt;</a>
-        {
-          Jobs.map(job => <Card job={{...job, id:(Jobs.indexOf(job)+1)}} />)
-        }
-      </div>
-    </div>
-  )
+	useEffect(() => {
+		setJobs(FreelaController.getJobs())
+	}, [])
+
+	return (
+		<div>
+			{ createJobModalOpen && <AddJob />}
+			{ editJobModalOpen && <EditJob />}
+			{ deleteJobModalOpen && <DeleteJob />}
+			<Header />
+			<div className="jobsContainer">
+				<a className="filter" href="#">filter &gt;&gt;</a>
+				{
+					jobs.map(job => <Card job={{ ...job, id: (jobs.indexOf(job) + 1) }} />)
+				}
+			</div>
+		</div>
+	)
 }

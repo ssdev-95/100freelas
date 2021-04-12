@@ -1,4 +1,4 @@
-module.exports = {
+export const Utils = {
     getRemainingDays: (job) => {
         const remainingDays = (job.totalHours/job.dailyHours).toFixed()
     
