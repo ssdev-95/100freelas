@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { EditContext } from '../../../contexts/EditContext'
 
@@ -7,29 +8,33 @@ import common from '../../../styles/components/Modal.module.css'
 import modal from '../../../styles/components/Create.module.css'
 
 export default function EditJob() {
-    const {openEditModal} = useContext(EditContext)
+    const {register, handleSubmit} = useForm()
+    const {openEditModal, editJob, onSubmit} = useContext(EditContext)
     
     return (
         <div className={common.overlay}>
             <div className={common.modal}>
                 <img
-                  onClick={openEditModal} 
+                  onClick={()=>openEditModal(null)} 
                   className={modal.exit} 
                   src="images/open-door.svg" />
                 <div className={modal.left}>
                     <span className={modal.title}>Dados do Job</span>
                     <div className={modal.input}>
                         <span>Job Name</span>
-                        <input name="job_name" type="text"/>
+                        <input {...register("job_name")} type="text"
+                            defaultValue={editJob.name}/>
                     </div>
                     <div  className={modal.container}>
                         <div className={modal.input}>
                             <span>How many hours<br/>will spend with this job?</span>
-                            <input name="daily_hours" type="text"/>
+                            <input {...register("daily_hours")} type="text"
+                            defaultValue={editJob.daily_hours}/>
                         </div>
                         <div className={modal.input}>
                             <span>Estimated<br/>hours for this Job</span>
-                            <input name="total_hours" type="text"/>
+                            <input {...register("total_hours")} type="text"
+                            defaultValue={editJob.total_hours}/>
                         </div>
                     </div>
                 </div>
@@ -37,7 +42,10 @@ export default function EditJob() {
                     <img src="images/money-gray.svg" alt=""/>
                     <span>Fill the form on the left to see Job's price</span>
                     <div className={modal.actions}>
-                        <div style={{background: colors.light.save}} className={modal.button}>
+                        <div
+                          style={{background: colors.light.save}}
+                          className={modal.button}
+                          onSubmit={handleSubmit(onSubmit)}>
                             <span>Save</span>
                         </div>
                         <img src="images/trash-24.svg" alt="Delete button"/>

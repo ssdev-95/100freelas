@@ -38,7 +38,7 @@ export default function Card({job, index}) {
                 <span>{status}</span>
             </div>
             <div className={styles.actions}>
-                <img onClick={openEditModal} src="images/edit-24.svg" alt="Edit button"/>
+                <img onClick={()=>openEditModal(job)} src="images/edit-24.svg" alt="Edit button"/>
                 <img onClick={()=>openDeleteModal(id)} src="images/trash-24.svg" alt="Delete button"/>
             </div>
         </div>

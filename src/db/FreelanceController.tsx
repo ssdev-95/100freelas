@@ -22,7 +22,7 @@ interface JobData {
 export const FreelaController = {
     createJob(job: JobData) {
         database
-            .collection('jos')
+            .collection('freelas')
             .add({
                 name: job.name,
                 daily_hours: job.daily_hours,
@@ -53,19 +53,19 @@ export const FreelaController = {
             })
         return jobs
     },
-    updateJob(job: JobDataExtended) {
+    updateJob(job: any, id: string) {
         database
-            .collection('jobs')
+            .collection('freelas')
             .doc(job.id)
             .update({
-                name: job.name,
+                name: job.job_name,
                 daily_hours: job.daily_hours,
                 total_hours: job.total_hours
             })
     },
     deleteJob(id: string) {
         database
-            .collection('jobs')
+            .collection('freelas')
             .doc(id)
             .delete()
     }

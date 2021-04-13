@@ -1,4 +1,4 @@
-import { database } from '../db/config'
+import { database } from './config'
 
 interface ProfileData {
     id: string,
@@ -10,21 +10,29 @@ interface ProfileData {
 }
 
 export const ProfileController = {
-    get() {
+    getProfile() {
         let profile
+
         database
             .collection('profile')
-            .onSnapshot(snap => {
-                profile = {
-                    id: snap.docs[0].id,
-                    name: snap.docs[0].data().name,
-                    daily_hours: snap.docs[0].data().hours_per_day,
-                    weekly_days: snap.docs[0].data().days_per_week,
-                    annual_vacations: snap.docs[0].data().vacations_per_year,
-                    monthly_budget: snap.docs[0].data().monthly_budget
-                }
+            .onSnapshot(snapshot => {
+                snapshot
+                    .docs
+                    .map(doc => {
+                        profile = {
+                            weekly_days: doc.data().days_per_week,
+                            daily_hours: doc.data().hours_per_day,
+                            monthly_budget: doc.data().monthly_budget,
+                            annual_vacations: doc.data().vacations_per_year,
+                            name: doc.data().name,
+                            id: doc.id
+                        }
+                    })
                 console.log(profile)
             })
+        
+            console.log(profile)
+
         return profile
     },
     update(profile: ProfileData) {
