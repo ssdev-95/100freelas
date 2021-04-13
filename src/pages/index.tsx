@@ -32,7 +32,7 @@ export default function Home() {
 			<div className="jobsContainer">
 				<a className="filter" href="#">filter &gt;&gt;</a>
 				{
-					jobs.map(job => <Card job={{ ...job, id: (jobs.indexOf(job) + 1) }} />)
+					jobs.length>0&&jobs.map(job => <Card key={job.id} index={jobs.indexOf(job)} job={job} />)
 				}
 			</div>
 		</div>

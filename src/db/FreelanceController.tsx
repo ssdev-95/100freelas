@@ -1,5 +1,5 @@
-import { database } from '../db/config'
-import { ProfileController } from './ProfileController'
+import { database } from './config'
+//import { ProfileController } from './ProfileController'
 import { Utils } from '../utils/FreelaUtils'
 
 interface JobDataExtended {
@@ -8,6 +8,7 @@ interface JobDataExtended {
     daily_hours: number;
     total_hours: number;
     budget: number;
+    created_at: number;
 }
 
 interface JobData {
@@ -15,6 +16,7 @@ interface JobData {
     daily_hours: number;
     total_hours: number;
     budget: number;
+    created_at: number;
 }
 
 export const FreelaController = {
@@ -24,27 +26,30 @@ export const FreelaController = {
             .add({
                 name: job.name,
                 daily_hours: job.daily_hours,
-                total_hours: job.total_hours
+                total_hours: job.total_hours,
+                created_at: job.created_at
             })
     },
     getJobs() {
-        const profile = ProfileController.get()
-        console.log(profile)
-        const hourvalue = profile.monthly_budget / (profile.daily_hours * profile.weekly_days)
-        let jobs: JobDataExtended[]
+        // console.log(ProfileController.get())
+        // const {monthly_budget, daily_hours, weekly_days} = ProfileController.get()
+        // const hourvalue = monthly_budget / (daily_hours * weekly_days)
+        let jobs = []
         database
-            .collection('jobs')
-            .onSnapshot(snap => {
-                snap
+            .collection('freelas')
+            .onSnapshot(snapshot => {
+                snapshot
                     .docs
-                    .map(doc => jobs.push({
-                        id: doc.id,
-                        name: doc.data().name,
-                        daily_hours: doc.data().daily_hours,
-                        total_hours: doc.data().total_hours,
-                        budget: Utils.calculateBudget(doc.data().total_hours, hourvalue)
-                    })
-                    )
+                    .map(doc => {
+                        jobs.push({
+                            id: doc.id,
+                            name: doc.data().name,
+                            daily_hours: doc.data().daily_hours,
+                            total_hours: doc.data().total_hours,
+                            created_at: doc.data().created_at
+                        })
+                  }
+                )
             })
         return jobs
     },

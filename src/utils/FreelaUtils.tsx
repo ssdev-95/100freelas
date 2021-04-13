@@ -1,8 +1,8 @@
 export const Utils = {
-    getRemainingDays: (job) => {
-        const remainingDays = (job.totalHours/job.dailyHours).toFixed()
+    getRemainingDays: (totalHours, dailyHours, createdAt) => {
+        const remainingDays = (totalHours/dailyHours).toFixed()
     
-        const createdDate = new Date(job.createdAt)
+        const createdDate = new Date(createdAt)
     
         const dueDay = createdDate.getDate() + Number(remainingDays)
     
