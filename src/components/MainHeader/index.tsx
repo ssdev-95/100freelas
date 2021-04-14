@@ -2,31 +2,31 @@
 import React, { useContext, useEffect } from 'react'
 import Link from 'next/link'
 
-import { ProfileController } from '../../db/ProfileController'
-import { FreelaController } from '../../db/FreelanceController'
 import { Utils } from '../../utils/FreelaUtils'
 
 import { CreateContext } from '../../contexts/CreateContext'
+import { FreelasContext } from '../../contexts/Freelas'
+import { ProfileContext } from '../../contexts/Profile'
 
 import styles from '../../styles/components/HomeHead.module.css'
 
 export default function Header() {
 	const {openCreateModal} = useContext(CreateContext)
-	let freelas = []
-	const status = {
+	const {freelas} = useContext(FreelasContext)
+	const {profile} = useContext(ProfileContext)
+
+	let status = {
 		done: 0,
 		progress: 0
 	}
 	
 	useEffect(()=>{
-		ProfileController.getProfile()
-		freelas = FreelaController.getJobs()
 	}, [])
 
 	useEffect(()=>{
 		freelas.forEach(freela=>{
 			const { total_hours, daily_hours, created_at } = freela
-			Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0 ? (status.progress+=1) : (status.done+=1)
+			Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0 ? (status.progress++) : (status.done++)
 		})
 	}, [freelas])
 
@@ -40,11 +40,11 @@ export default function Header() {
 				</div>
 				<div className={styles.profileContainer}>
 					<div>
-						<h3>Salomao Souza</h3>
+						<h3>{profile.name}</h3>
 						<h3><Link href={{pathname: '/Profile'}}>See profile</Link></h3>
 					</div>
 					<div className={styles.avatarContainer}>
-						<img src="https://github.com/xSallus.png" alt="" />
+						<img src={profile.avatar} alt="" />
 					</div>
 				</div>
 			</div>

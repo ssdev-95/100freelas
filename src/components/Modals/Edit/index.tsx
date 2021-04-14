@@ -22,18 +22,18 @@ export default function EditJob() {
                     <span className={modal.title}>Dados do Job</span>
                     <div className={modal.input}>
                         <span>Job Name</span>
-                        <input {...register("job_name")} type="text"
+                        <input {...register("job_name")} name="job_name" type="text"
                             defaultValue={editJob.name}/>
                     </div>
                     <div  className={modal.container}>
                         <div className={modal.input}>
                             <span>How many hours<br/>will spend with this job?</span>
-                            <input {...register("daily_hours")} type="text"
+                            <input {...register("daily_hours")} name="daily_hours" type="text"
                             defaultValue={editJob.daily_hours}/>
                         </div>
                         <div className={modal.input}>
                             <span>Estimated<br/>hours for this Job</span>
-                            <input {...register("total_hours")} type="text"
+                            <input {...register("total_hours")} name="total_hours" type="text"
                             defaultValue={editJob.total_hours}/>
                         </div>
                     </div>

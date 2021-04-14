@@ -7,44 +7,40 @@ interface ProfileData {
     weekly_days: number;
     annual_vacations: number;
     monthly_budget: number;
+    avatar: string;
 }
 
 export const ProfileController = {
     getProfile() {
-        let profile
-
-        database
+        database.firestore()
             .collection('profile')
             .onSnapshot(snapshot => {
                 snapshot
                     .docs
-                    .map(doc => {
-                        profile = {
+                    .forEach(doc => {
+                        localStorage.setItem('profile', JSON.stringify({
+                            avatar: doc.data().avatar,
                             weekly_days: doc.data().days_per_week,
                             daily_hours: doc.data().hours_per_day,
                             monthly_budget: doc.data().monthly_budget,
                             annual_vacations: doc.data().vacations_per_year,
                             name: doc.data().name,
                             id: doc.id
-                        }
+                        }))
                     })
-                console.log(profile)
             })
-        
-            console.log(profile)
-
-        return profile
     },
-    update(profile: ProfileData) {
-        database
+    update(profile: any, id: string) {
+        database.firestore()
             .collection('profile')
-            .doc(profile.id)
+            .doc(id)
             .update({
-                name: profile.name,
+                name: profile.profile_name,
                 hours_per_days: profile.daily_hours,
-                days_per_week: profile.weekly_days,
-                vacations_per_year: profile.annual_vacations,
-                monthly_budget: profile.monthly_budget
+                days_per_week: profile.days_per_week,
+                vacations_per_year: profile.vacations_per_year,
+                monthly_budget: profile.monthly_budget,
+                avatar: profile.profile_avatar
             })
     }
 }

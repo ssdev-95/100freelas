@@ -1,27 +1,8 @@
 import { database } from './config'
-//import { ProfileController } from './ProfileController'
-import { Utils } from '../utils/FreelaUtils'
-
-interface JobDataExtended {
-    id: string;
-    name: string;
-    daily_hours: number;
-    total_hours: number;
-    budget: number;
-    created_at: number;
-}
-
-interface JobData {
-    name: string;
-    daily_hours: number;
-    total_hours: number;
-    budget: number;
-    created_at: number;
-}
 
 export const FreelaController = {
-    createJob(job: JobData) {
-        database
+    createJob(job: any) {
+        database.firestore()
             .collection('freelas')
             .add({
                 name: job.name,
@@ -31,11 +12,8 @@ export const FreelaController = {
             })
     },
     getJobs() {
-        // console.log(ProfileController.get())
-        // const {monthly_budget, daily_hours, weekly_days} = ProfileController.get()
-        // const hourvalue = monthly_budget / (daily_hours * weekly_days)
         let jobs = []
-        database
+        database.firestore()
             .collection('freelas')
             .onSnapshot(snapshot => {
                 snapshot
@@ -54,7 +32,7 @@ export const FreelaController = {
         return jobs
     },
     updateJob(job: any, id: string) {
-        database
+        database.firestore()
             .collection('freelas')
             .doc(job.id)
             .update({
@@ -64,7 +42,7 @@ export const FreelaController = {
             })
     },
     deleteJob(id: string) {
-        database
+        database.firestore()
             .collection('freelas')
             .doc(id)
             .delete()

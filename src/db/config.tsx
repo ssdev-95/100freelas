@@ -12,4 +12,4 @@ const firebaseConfig = {
  
 firebase.apps.length<1 && firebase.initializeApp(firebaseConfig)
 
-export const database = firebase.firestore()
+export const database = firebase
