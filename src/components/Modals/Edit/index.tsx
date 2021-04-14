@@ -14,10 +14,6 @@ export default function EditJob() {
     return (
         <div className={common.overlay}>
             <div className={common.modal}>
-                <img
-                  onClick={()=>openEditModal(null)} 
-                  className={modal.exit} 
-                  src="images/open-door.svg" />
                 <div className={modal.left}>
                     <span className={modal.title}>Dados do Job</span>
                     <div className={modal.input}>
@@ -45,10 +41,10 @@ export default function EditJob() {
                         <div
                           style={{background: colors.light.save}}
                           className={modal.button}
-                          onSubmit={handleSubmit(onSubmit)}>
+                          onClick={handleSubmit(onSubmit)}>
                             <span>Save</span>
                         </div>
-                        <img src="images/trash-24.svg" alt="Delete button"/>
+                        <img onClick={()=>openEditModal(null)} src="images/trash-24.svg" alt="Delete button"/>
                     </div>
                 </div>
             </div>

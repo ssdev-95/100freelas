@@ -14,7 +14,6 @@ export default function AddJob() {
     return (
         <div className={common.overlay}>
             <div className={common.modal}>
-                <img onClick={openCreateModal} className={modal.exit} src="images/open-door.svg" alt=""/>
                 <div className={modal.left}>
                     <span className={modal.title}>Dados do Job</span>
                     <div className={modal.input}>
@@ -39,7 +38,7 @@ export default function AddJob() {
                         <div onClick={handleSubmit(createJob)} style={{background: colors.light.save}} className={modal.button}>
                             <span>Save</span>
                         </div>
-                        <img src="images/trash-24.svg" alt="Delete button"/>
+                        <img onClick={openCreateModal} src="images/trash-24.svg" alt="Delete button"/>
                     </div>
                 </div>
             </div>

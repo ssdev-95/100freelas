@@ -34,7 +34,7 @@ export const FreelaController = {
     updateJob(job: any, id: string) {
         database.firestore()
             .collection('freelas')
-            .doc(job.id)
+            .doc(id)
             .update({
                 name: job.job_name,
                 daily_hours: job.daily_hours,

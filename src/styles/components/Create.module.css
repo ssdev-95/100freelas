@@ -94,6 +94,10 @@
     height: 3rem;
 }
 
+.button:hover {
+    opacity: .88;
+}
+
 .button span {
     color: var(--card-background);
 }

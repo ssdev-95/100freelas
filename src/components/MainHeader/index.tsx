@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 
 import { Utils } from '../../utils/FreelaUtils'
@@ -14,6 +14,7 @@ export default function Header() {
 	const {openCreateModal} = useContext(CreateContext)
 	const {freelas} = useContext(FreelasContext)
 	const {profile} = useContext(ProfileContext)
+	const [freeHours, setFreeHours] = useState(profile.daily_hours)
 
 	let status = {
 		done: 0,
@@ -26,7 +27,22 @@ export default function Header() {
 	useEffect(()=>{
 		freelas.forEach(freela=>{
 			const { total_hours, daily_hours, created_at } = freela
-			Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0 ? (status.progress++) : (status.done++)
+			let stats = ''
+			if(Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0) {
+			 	status.progress+=1
+				stats = 'progress'
+			 } else {
+				status.done+=1
+				stats = 'done'
+			 }
+
+			if(stats === 'progress') {
+				if(freeHours>0) {
+					if(daily_hours <= freeHours) {
+						setFreeHours(freeHours-daily_hours)
+					}
+				}
+			}
 		})
 	}, [freelas])
 
@@ -36,7 +52,7 @@ export default function Header() {
 				<img className={styles.logo} src="images/logo.svg" alt="Logo" />
 				<div className={styles.freehours}>
 					<img src="images/alert.svg" alt="" />
-					<h2>Have 2 hours left in your working day</h2>
+					<h2>{freeHours>0?`${freeHours} hours left in your day`:'You don`t have free hours left'}</h2>
 				</div>
 				<div className={styles.profileContainer}>
 					<div>
