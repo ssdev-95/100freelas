@@ -34,6 +34,8 @@
     border-radius: 14px;
     border: none;
     background: var(--input-background);
+    color: var(--card-label);
+    padding: .15rem .75rem;
 }
 
 .right {
