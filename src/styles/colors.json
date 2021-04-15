@@ -30,6 +30,8 @@
     "slider-bg": "#F1972C"
   },
   "dark": {
+    "background": "#787880",
+    "primary": "#000",
     "slider-bg": "#4B0082"
   }
 }

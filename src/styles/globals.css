@@ -40,8 +40,12 @@
 }
 
 html, body {
-    background: #f0f2f5;
     font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
 }
 
 .jobsContainer {

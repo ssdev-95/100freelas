@@ -1,4 +1,4 @@
-import React, { useState, createContext} from 'react'
+import React, { useState, useEffect, createContext} from 'react'
 
 interface ProviderProps {
     children: React.ReactNode;
@@ -19,13 +19,22 @@ export const SliderContextProvider = ({children}: ProviderProps) => {
 
     const slide = () => {
         if(thumbPosiX==='-1px') { 
-            setThumbPosiX('42px')
-            setTheme('dark')
+            localStorage.setItem('theme', 'dark')
+            setTheme(localStorage.getItem('theme'))
         } else {
-            setThumbPosiX('-1px')
-            setTheme('light')
+            localStorage.setItem('theme', 'light')
+            setTheme(localStorage.getItem('theme'))
         }
     }
+
+    useEffect(()=>{
+        setTheme(localStorage.getItem('theme'))
+    }, [])
+
+
+    useEffect(()=>{
+        theme === 'light' ? setThumbPosiX('-1px') : setThumbPosiX('42px')
+    }, [theme])
 
     return (
         <SliderContext.Provider value={{

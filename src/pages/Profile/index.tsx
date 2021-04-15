@@ -4,14 +4,21 @@ import { useForm } from 'react-hook-form'
 import { ProfileController } from '../../db/ProfileController'
 import { ProfileContext } from '../../contexts/Profile'
 
+import { SliderContext } from '../../contexts/SliderContext'
+
 import Header from '../../components/ProfileHeader'
 
+import colors from '../../styles/colors.json'
 import styles from '../../styles/pages/Profile.module.css'
 
 export default function Profile() {
 	const { register, handleSubmit } = useForm()
 
 	const { profile } = useContext(ProfileContext)
+
+	const { theme } = useContext(SliderContext)
+
+	const bg = theme === 'light' ? colors.light['background'] : colors.dark['background']
 
 	const hour_value = (profile.monthly_budget/(profile.weekly_days*profile.daily_hours)).toFixed(2).replace(/\D/, ',')
 
@@ -20,7 +27,7 @@ export default function Profile() {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container} style={{background: bg}}>
 			<Header />
 			<div className={styles.content}>
 				<div className={styles.left}>
