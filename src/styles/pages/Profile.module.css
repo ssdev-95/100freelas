@@ -127,3 +127,27 @@
     flex-direction: column;
     width: 100%;
 }
+
+@media(max-width: 1024px) {
+    .content {
+        flex-direction: column;
+        overflow-y: scroll;
+        padding: 3rem;
+    }
+
+    .pricing span:first-child {
+        font-size: .95rem;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .topperInput {
+        padding: 0;
+    }
+
+    .toperInput input{
+        width: 50vw;
+    }
+}

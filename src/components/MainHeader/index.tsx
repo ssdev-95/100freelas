@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -8,12 +7,23 @@ import { CreateContext } from '../../contexts/CreateContext'
 import { FreelasContext } from '../../contexts/Freelas'
 import { ProfileContext } from '../../contexts/Profile'
 
+import { SliderContext } from '../../contexts/SliderContext'
+
+import colors from '../../styles/colors.json'
+
 import styles from '../../styles/components/HomeHead.module.css'
 
 export default function Header() {
+	const { theme } = useContext(SliderContext)
+
+	const head = theme === 'light' ? colors.light['primary'] : colors.dark['primary']
+
 	const {openCreateModal} = useContext(CreateContext)
+
 	const {freelas} = useContext(FreelasContext)
+
 	const {profile} = useContext(ProfileContext)
+
 	const [freeHours, setFreeHours] = useState(profile.daily_hours)
 
 	let status = {
@@ -47,7 +57,8 @@ export default function Header() {
 	}, [freelas])
 
 	return (
-		<nav className={styles.navbar}>
+		<nav className={styles.navbar}
+		     style={{background: head}}>
 			<div className={styles.topBar}>
 				<img className={styles.logo} src="images/logo.svg" alt="Logo" />
 				<div className={styles.freehours}>
