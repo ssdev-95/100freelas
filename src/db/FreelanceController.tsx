@@ -11,14 +11,14 @@ export const FreelaController = {
                 created_at: job.created_at
             })
     },
-    getJobs() {
+    getJobs(): any {
         let jobs = []
         database.firestore()
             .collection('freelas')
             .onSnapshot(snapshot => {
                 snapshot
                     .docs
-                    .map(doc => {
+                    .forEach(doc => {
                         jobs.push({
                             id: doc.id,
                             name: doc.data().name,
@@ -26,8 +26,7 @@ export const FreelaController = {
                             total_hours: doc.data().total_hours,
                             created_at: doc.data().created_at
                         })
-                  }
-                )
+                    })
             })
         return jobs
     },

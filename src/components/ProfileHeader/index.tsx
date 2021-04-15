@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 
+import Slider from '../Slider'
+
 import styles from '../../styles/components/ProfileHeader.module.css'
 
 export default function Header() {
@@ -12,6 +14,7 @@ export default function Header() {
 				</Link>
 				<h1>My Profile</h1>
 			</div>
+			<Slider />
 		</div>
 	)
 }

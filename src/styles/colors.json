@@ -26,8 +26,10 @@
     "badge-done-text": "delete",
     "badge-done-background": "#FAECEB",
 
-    "header-inner-title": "card-label"
-
+    "header-inner-title": "card-label",
+    "slider-bg": "#F1972C"
   },
-  "dark": {}
+  "dark": {
+    "slider-bg": "#4B0082"
+  }
 }
