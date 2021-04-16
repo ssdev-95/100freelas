@@ -107,7 +107,21 @@
     opacity: .68;
 }
 
+@media(max-width: 353px) {
+    .avatarContainer {
+        background: transparent;
+    }
+    
+    .avatarContainer img {
+        height: 65%;
+        width: 65%;
+    }
 
+    .logo {
+        height: 50%;
+        width: 50%;
+    }
+}
 
 @media(max-width: 512px) {
     .profileContainer div h3 {

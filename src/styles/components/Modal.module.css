@@ -21,3 +21,12 @@
   border-radius: 24px;
   position: relative;
 }
+
+@media(max-width: 800px) {
+  .modal {
+    width: 21rem;
+    height: 80vh;
+    flex-direction: column;
+    padding: 2.5rem;
+  }
+}

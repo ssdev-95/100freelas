@@ -33,7 +33,7 @@ export default function AddJob() {
                 </div>
                 <div className={modal.right}>
                     <img src="images/money-gray.svg" alt=""/>
-                    <span>Fill the form on the left to see Job's price</span>
+                    <span className={modal.span}>Fill the form on the left to see Job's price</span>
                     <div className={modal.actions}>
                         <div onClick={handleSubmit(createJob)} style={{background: colors.light.save}} className={modal.button}>
                             <span>Save</span>
