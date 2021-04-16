@@ -101,3 +101,14 @@ html, body {
 .button:hover {
     background: var(--secundary-hover);
 }
+
+@media(max-width: 690px) {
+    .button {
+        width: 3rem;
+    }
+
+    .button p {
+        display: none;
+    }
+}
+

@@ -106,3 +106,25 @@
     font-size: 1rem;
     opacity: .68;
 }
+
+
+
+@media(max-width: 512px) {
+    .profileContainer div h3 {
+        display: none;
+    }
+}
+
+@media(max-width: 800px) {
+    .navbar {
+        height: 15rem;
+    }
+
+    .freehours {
+        display: none;
+    }
+    
+    .stats h3 {
+        font-size: 75%;
+    }
+}

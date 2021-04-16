@@ -18,11 +18,11 @@ export default function Header() {
 
 	const head = theme === 'light' ? colors.light['primary'] : colors.dark['primary']
 
-	const {openCreateModal} = useContext(CreateContext)
+	const { openCreateModal } = useContext(CreateContext)
 
-	const {freelas} = useContext(FreelasContext)
+	const { freelas } = useContext(FreelasContext)
 
-	const {profile} = useContext(ProfileContext)
+	const { profile } = useContext(ProfileContext)
 
 	const [freeHours, setFreeHours] = useState(profile.daily_hours)
 
@@ -30,26 +30,26 @@ export default function Header() {
 		done: 0,
 		progress: 0
 	}
-	
-	useEffect(()=>{
+
+	useEffect(() => {
 	}, [])
 
-	useEffect(()=>{
-		freelas.forEach(freela=>{
+	useEffect(() => {
+		freelas.forEach(freela => {
 			const { total_hours, daily_hours, created_at } = freela
 			let stats = ''
-			if(Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0) {
-			 	status.progress+=1
+			if (Utils.getRemainingDays(total_hours, daily_hours, created_at) > 0) {
+				status.progress += 1
 				stats = 'progress'
-			 } else {
-				status.done+=1
+			} else {
+				status.done += 1
 				stats = 'done'
-			 }
+			}
 
-			if(stats === 'progress') {
-				if(freeHours>0) {
-					if(daily_hours <= freeHours) {
-						setFreeHours(freeHours-daily_hours)
+			if (stats === 'progress') {
+				if (freeHours > 0) {
+					if (daily_hours <= freeHours) {
+						setFreeHours(freeHours - daily_hours)
 					}
 				}
 			}
@@ -58,21 +58,23 @@ export default function Header() {
 
 	return (
 		<nav className={styles.navbar}
-		     style={{background: head}}>
+			style={{ background: head }}>
 			<div className={styles.topBar}>
 				<img className={styles.logo} src="images/logo.svg" alt="Logo" />
 				<div className={styles.freehours}>
 					<img src="images/alert.svg" alt="" />
-					<h2>{freeHours>0?`${freeHours} hours left in your day`:'You don`t have free hours left'}</h2>
+					<h2>{freeHours > 0 ? `${freeHours} hours left in your day` : 'You don`t have free hours left'}</h2>
 				</div>
 				<div className={styles.profileContainer}>
 					<div>
 						<h3>{profile.name}</h3>
-						<h3><Link href={{pathname: '/Profile'}}>See profile</Link></h3>
+						<h3><Link href={{ pathname: '/Profile' }}>See profile</Link></h3>
 					</div>
-					<div className={styles.avatarContainer}>
-						<img src={profile.avatar} alt="" />
-					</div>
+					<Link href={{ pathname: '/Profile' }}>
+						<div className={styles.avatarContainer}>
+							<img src={profile.avatar} alt="" />
+						</div>
+					</Link>
 				</div>
 			</div>
 			<hr className={styles.line} />
